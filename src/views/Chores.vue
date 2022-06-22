@@ -3,7 +3,7 @@
     <img class="icon" alt="Icon" :src="`${chore.icon}`" />
     <div>
       {{ chore.description }}
-    </div>
+    </div>    
   </div>
 </template>
 
@@ -17,7 +17,7 @@ const { chores } = storeToRefs(useChoresStore());
 <style scoped>
 .chore-card {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 2fr 1fr;
   width: 50vw;
   border: 2px dotted black;
 }

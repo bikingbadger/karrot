@@ -18,6 +18,6 @@ const { kids } = storeToRefs(useKidsStore());
 <style>
 .kid-card {
   display: grid;
-  grid-template-columns: repeat(3, 1fr)
+  grid-template-columns: repeat(3, 1fr);
 }
 </style>

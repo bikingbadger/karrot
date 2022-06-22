@@ -29,6 +29,7 @@
   <a href="https://www.flaticon.com/free-icons/dishes" title="dishes icons">Dishes icons created by Konkapp - Flaticon</a>
   <a href="https://www.flaticon.com/free-icons/table" title="table icons">Table icons created by Freepik - Flaticon</a>
   <a href="https://www.flaticon.com/free-icons/towel" title="towel icons">Towel icons created by Eucalyp - Flaticon</a>
+  <a href="https://www.flaticon.com/free-icons/verified" title="verified icons">Verified icons created by Freepik - Flaticon</a>
 </template>
 
 <script>
