@@ -5,8 +5,7 @@ import TheHeader from './components/TheHeader.vue';
 
 <template>
   <TheHeader />
-  <router-link to="/">Home</router-link>
-   <router-link to="/Users">Users</router-link>
+  
   <router-view />
 </template>
 
