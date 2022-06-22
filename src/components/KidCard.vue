@@ -2,7 +2,7 @@
   <div>
     <h2>{{ kidDetails.name }}</h2>
     <img
-      class="user-icon"
+      class="icon"
       alt="Icon"
       :src="`../assets/${kidDetails.icon}.png`"
     />
@@ -14,8 +14,5 @@ defineProps({ kidDetails: String });
 </script>
 
 <style>
-.user-icon {
-  width: 3rem;
-  height: 3rem;
-}
+
 </style>

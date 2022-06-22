@@ -9,6 +9,9 @@
   <a href="https://www.flaticon.com/free-icons/rabbit" title="rabbit icons">Rabbit icons created by smalllikeart - Flaticon</a>
   <a href="https://www.flaticon.com/free-icons/shark" title="shark icons">Shark icons created by smalllikeart - Flaticon</a>
   <a href="https://www.flaticon.com/free-icons/carrot" title="carrot icons">Carrot icons created by Freepik - Flaticon</a>
+  <a href="https://www.flaticon.com/free-icons/children" title="children icons">Children icons created by Freepik - Flaticon</a>
+  <a href="https://www.flaticon.com/free-icons/clean" title="clean icons">Clean icons created by Flat Icons - Flaticon</a>
+  <a href="https://www.flaticon.com/free-icons/house" title="house icons">House icons created by Freepik - Flaticon</a>
 </template>
 
 <script>

@@ -5,9 +5,9 @@ export const useKidsStore = defineStore({
   state: () => ({
     counter: 0,
     kids: [
-      { id: 1, name: 'Lily', icon: 'penguin' },
-      { id: 2, name: 'Dean', icon: 'shark' },
-      { id: 3, name: 'Chloe', icon: 'butterfly' },
+      { id: 1, name: 'Lily', icon: 'penguin', chores: [] },
+      { id: 2, name: 'Dean', icon: 'shark', chores: [] },
+      { id: 3, name: 'Chloe', icon: 'butterfly', chores: [] },
     ],
   }),
   getters: {
