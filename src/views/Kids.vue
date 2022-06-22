@@ -9,10 +9,15 @@ const { kids } = storeToRefs(useKidsStore());
 <template>
   <h2>Kids</h2>
   <main>
-    <div v-for="kid in kids" :key="kid.id">
-       <kid-card :kidDetails="kid" />
+    <div class="kid-card">
+      <kid-card v-for="kid in kids" :key="kid.id" :kidDetails="kid" />
     </div>
   </main>
 </template>
 
-<style></style>
+<style>
+.kid-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr)
+}
+</style>
