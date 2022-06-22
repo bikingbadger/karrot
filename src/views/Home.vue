@@ -1,9 +1,9 @@
+<template>
+  <div>Home</div>
+</template>
+
 <script>
 export default {};
 </script>
-
-<template>
-  <div>User</div>
-</template>
 
 <style></style>
