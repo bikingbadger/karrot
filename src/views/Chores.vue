@@ -3,7 +3,16 @@
     <img class="icon" alt="Icon" :src="`${chore.icon}`" />
     <div>
       {{ chore.description }}
-    </div>    
+    </div>
+    <div class="carrot-container">
+      <img
+        v-for="index in chore.value"
+        :key="index"
+        class="icon"
+        alt="Done"
+        src="/assets/carrot.png"
+      />
+    </div>
   </div>
 </template>
 
@@ -17,7 +26,7 @@ const { chores } = storeToRefs(useChoresStore());
 <style scoped>
 .chore-card {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 2fr 2fr;
   width: 50vw;
   border: 2px dotted black;
 }
@@ -26,5 +35,10 @@ const { chores } = storeToRefs(useChoresStore());
   height: 2rem;
   border-radius: 0;
   background-color: transparent;
+}
+.carrot-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 </style>
