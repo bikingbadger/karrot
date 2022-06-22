@@ -7,9 +7,8 @@ const { kids } = storeToRefs(useKidsStore());
 </script>
 
 <template>
-  <h2>Kids</h2>
-  <main>
-    <div class="kid-card">
+  <main class="">
+    <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-2">
       <kid-card v-for="kid in kids" :key="kid.id" :kidDetails="kid" />
     </div>
   </main>

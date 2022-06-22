@@ -3,9 +3,11 @@ import TheHeader from './components/TheHeader.vue';
 </script>
 
 <template>
-  <TheHeader />
+  <div class="container mx-auto">
+    <TheHeader />
 
-  <router-view />
+    <router-view />
+  </div>
 </template>
 
 <style>
