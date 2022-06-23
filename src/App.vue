@@ -3,7 +3,11 @@ import TheHeader from './components/TheHeader.vue';
 </script>
 
 <template>
-  <TheHeader />
+  <div class="container mx-auto">
+    <TheHeader />
+
+    <router-view />
+  </div>
 </template>
 
 <style>
@@ -14,5 +18,14 @@ import TheHeader from './components/TheHeader.vue';
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: bisque;
+  border-radius: 50%;
 }
 </style>
