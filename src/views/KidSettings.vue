@@ -6,8 +6,8 @@ import { useKidsStore } from '@/stores/kidsStore.js';
 const kidsStore = useKidsStore();
 
 const route = useRoute();
-const userId = parseInt(route.params.id, 2);
-console.log(userId);
+const userId = parseInt(route.params.id);
+console.log(route.params.id, userId);
 
 const kid = kidsStore.getKidChores(userId);
 </script>

@@ -67,9 +67,6 @@ export const useKidsStore = defineStore('kids', {
     ],
   }),
   getters: {
-    getKids: (state) => {
-      return state.kids;
-    },
     getKidChores: (state) => {
       return (kidId) => {
         const kid = state.kids.find((kid) => kid.id === kidId);
