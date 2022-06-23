@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-defineProps({ kidDetails: String });
+defineProps({ kidDetails: Object });
 </script>
 
 <style></style>

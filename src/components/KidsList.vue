@@ -10,7 +10,7 @@ const { kids } = storeToRefs(useKidsStore());
     <li class="">
       <router-link
         class="flex flex-wrap my-auto justify-center"
-        :to="`/Kids-Settings/${kid.id}`"
+        :to="`/Kid-Settings/${kid.id}`"
         ><img
           class="w-4 h-4 my-auto"
           alt="Icon"

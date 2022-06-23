@@ -1,12 +1,11 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
-export const useSettingStore = defineStore({
-	id:'settingsStore',
-	state: ()=>({
-		parent: {
-			name: 'Hilton',
-			email: 'contact@hiltonmeyer.com',
-			code: 1981
-		}
-	})
-})
+export const useSettingStore = defineStore('settingsStore', {
+  state: () => ({
+    parent: {
+      name: 'Hilton',
+      email: 'contact@hiltonmeyer.com',
+      code: 1981,
+    },
+  }),
+});
