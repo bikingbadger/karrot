@@ -1,11 +1,11 @@
 <template>
   <header class="grid grid-flow-col p-4">
     <img
-      class="ml-auto sm:w-16 w-20sm:h-16 md:w-20"
+      class="ml-auto w-8 md:w-20 h-8 md:h-20"
       alt="Karrot"
       src="../assets/logo.png"
     />
-    <h1 class="text-3xl font-bold mr-auto my-auto pl-4">Karot</h1>
+    <h1 class="text-2xl md:text-3xl font-bold mr-auto my-auto pl-4">Karot</h1>
   </header>
   <div
     class="grid grid-flow-col justify-center grid-cols-[repeat(3,max-content)] gap-4 p-4"
