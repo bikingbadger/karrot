@@ -1,12 +1,13 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import TheHeader from './components/TheHeader.vue';
 </script>
 
 <template>
-  <img alt="Karrot" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <div class="container mx-auto">
+    <TheHeader />
+
+    <router-view />
+  </div>
 </template>
 
 <style>
@@ -17,5 +18,14 @@ import HelloWorld from './components/HelloWorld.vue'
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: bisque;
+  border-radius: 50%;
 }
 </style>
