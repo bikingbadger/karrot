@@ -1,6 +1,6 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import { useChoresStore } from '../stores/chores';
+import { useChoresStore } from '../stores/choresStore';
 import ChoreCard from './ChoreCard.vue';
 
 const { chores } = storeToRefs(useChoresStore());
