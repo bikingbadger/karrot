@@ -3,7 +3,7 @@ import KidsList from '../components/KidsList.vue';
 </script>
 
 <template>
-  <p>Settings</p>
+  <h2 class="text-xl font-bold my-auto">Settings</h2>
   <kids-list />
 </template>
 

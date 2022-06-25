@@ -3,7 +3,7 @@
     <h2 class="text-xl font-bold my-auto">{{ kidDetails.name }}</h2>
     <img class="mx-auto w-4 h-4 my-auto" alt="Icon" :src="`../assets/${kidDetails.icon}.png`" />
 
-    <h2>Chores</h2>
+    <h3 class="text-lg font-bold my-auto">Chores</h3>
     <img class="icon" alt="Not Done" src="/assets/uncheck.png" />
     <img class="icon" alt="Done" src="/assets/check.png" />
   </div>
