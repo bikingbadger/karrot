@@ -28,6 +28,12 @@
         alt="Chores"
         src="/assets/household-chores.png"
     /></router-link>
+    <router-link to="/Settings">
+      <img
+        class="mx-auto w-8 h-8 hover:bg-sky-500/50 hover:rounded-full"
+        alt="Chores"
+        src="/assets/construction-tools.png"
+    /></router-link>
   </div>
 </template>
 

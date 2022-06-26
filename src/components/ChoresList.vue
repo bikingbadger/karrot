@@ -1,17 +1,18 @@
 <script setup>
-import { storeToRefs } from 'pinia';
-import { useChoresStore } from '../stores/chores';
 import ChoreCard from './ChoreCard.vue';
-
-const { chores } = storeToRefs(useChoresStore());
+const props = defineProps({ Chores: Object, showMarker: Boolean });
 </script>
 
 <template>
   <div
     class="grid grid-flow-col grid-cols-3 gap-4 m-4"
-    v-for="chore in chores"
+    v-for="chore in Chores"
     :key="chore.id"
   >
-    <chore-card :chore="chore" />
+    <chore-card
+      :Chore="chore"
+      :showMarker="showMarker"
+      @mark-completed="(...args) => $emit('markCompleted', ...args)"
+    />
   </div>
 </template>

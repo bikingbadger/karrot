@@ -1,7 +1,7 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import { useKidsStore } from '../stores/kids.js';
-import KidCard from '../components/KidCard.vue';
+import { useKidsStore } from '@/stores/kidsStore.js';
+import KidCard from '@/components/KidCard.vue';
 
 const { kids } = storeToRefs(useKidsStore());
 </script>
