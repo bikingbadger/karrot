@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia';
 import { useChoresStore } from '../stores/choresStore';
 import ChoresList from '../components/ChoresList.vue';
 
-defineEmits(['closeModal','markCompleted']);
+defineEmits(['closeModal', 'markCompleted']);
 const props = defineProps({ CurrentChores: Object });
 
 const { chores } = storeToRefs(useChoresStore());
@@ -18,7 +18,11 @@ const remainingChores = chores.value.filter((chore) => {
     @click.self="$emit('closeModal')"
   >
     <div class="relative mx-auto my-24 bg-neutral-100 p-8 w-2/3">
-      <chores-list :Chores="remainingChores" :showMarker="true" @mark-completed="(...args) => $emit('markCompleted', ...args)"/>
+      <chores-list
+        :Chores="remainingChores"
+        :showMarker="true"
+        @mark-completed="(...args) => $emit('markCompleted', ...args)"
+      />
       <button class="btn btn-blue" @click="$emit('closeModal')">Close</button>
     </div>
   </div>

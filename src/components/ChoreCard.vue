@@ -1,9 +1,13 @@
 <script setup>
 import { ref } from 'vue';
-defineProps({ Chore: Object, showMarker: Boolean });
-defineEmits(['markCompleted']);
+const props = defineProps({ Chore: Object, showMarker: Boolean });
+const emit = defineEmits(['markCompleted']);
 
-const completed = ref(false);
+let completed = ref(false);
+const completeChore = () => {
+  completed.value = true;
+  emit('markCompleted', props.Chore.id);
+};
 </script>
 
 <template>
@@ -26,7 +30,7 @@ const completed = ref(false);
       class="mx-auto w-4 h-4 my-auto"
       alt="Not Done"
       src="/assets/uncheck.png"
-      @click="$emit('markCompleted', Chore.id)"
+      @click="completeChore"
     />
     <img
       v-else

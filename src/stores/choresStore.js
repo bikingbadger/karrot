@@ -98,6 +98,12 @@ export const useChoresStore = defineStore('chores', {
       },
     ],
   }),
-  getters: {},
+  getters: {
+    getChore: (state) => {
+      return (choreId) => {
+        return state.chores.find((chore) => chore.id === choreId);
+      };
+    },
+  },
   actions: {},
 });

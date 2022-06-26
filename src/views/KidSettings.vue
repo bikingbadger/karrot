@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useKidsStore } from '@/stores/kidsStore.js';
+import { useChoresStore } from '@/stores/choresStore.js';
+
 import ChoreAddModal from '@/components/ChoreAddModal.vue';
 
 const route = useRoute();
@@ -11,6 +13,7 @@ const kidsStore = useKidsStore();
 const kid = kidsStore.getKid(userId);
 const currentChores = kid.chores;
 
+// Modal
 let showModal = ref(false);
 
 const closeModal = () => {
@@ -21,8 +24,12 @@ const openModal = () => {
   showModal.value = true;
 };
 
+// Handle adding chores
+const chores = useChoresStore();
 const markCompleted = (id) => {
   console.log(`mark ${id} as completed for ${kid.id}`);
+  const chore = chores.getChore(id);
+  kidsStore.addChore(kid.id,chore)
 };
 </script>
 

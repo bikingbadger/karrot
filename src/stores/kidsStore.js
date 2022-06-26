@@ -76,7 +76,15 @@ export const useKidsStore = defineStore('kids', {
   },
   actions: {
     addUser(kid) {
-      state.kids.push(kid);
+      this.kids.push(kid);
+    },
+    addChore(kidId, chore) {
+      const id = this.kids.findIndex((kid) => kid.id === kidId);
+      if (!id) {
+        console.error(`User ID ${id} not found`);
+      }
+      console.log(id, chore);
+      this.kids[id].chores.push(chore);
     },
   },
 });
