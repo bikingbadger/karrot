@@ -15,7 +15,7 @@ defineProps({ kidDetails: Object });
 
     <h3 class="text-lg font-bold my-auto">Chores</h3>
     
-    <chores-list :Chores="kidDetails.chores" />
+    <chores-list :Chores="kidDetails.chores" :showMarker="true" />
   </div>
 </template>
 

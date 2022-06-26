@@ -20,12 +20,21 @@ const closeModal = () => {
 const openModal = () => {
   showModal.value = true;
 };
+
+const markCompleted = (id) => {
+  console.log(`mark ${id} as completed for ${kid.id}`);
+};
 </script>
 
 <template>
   <h2 class="text-xl font-bold my-auto">{{ kid.name }}</h2>
 
-  <chore-add-modal v-if="showModal" @close-modal="closeModal()" :CurrentChores="currentChores"/>
+  <chore-add-modal
+    v-if="showModal"
+    @close-modal="closeModal()"
+    :CurrentChores="currentChores"
+    @mark-completed="markCompleted"
+  />
   <button class="btn btn-blue" @click="openModal()">Add</button>
 
   <ul

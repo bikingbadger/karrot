@@ -1,7 +1,6 @@
 <script setup>
 import ChoreCard from './ChoreCard.vue';
-defineProps({ Chores: Object });
-
+const props = defineProps({ Chores: Object, showMarker: Boolean });
 </script>
 
 <template>
@@ -10,6 +9,10 @@ defineProps({ Chores: Object });
     v-for="chore in Chores"
     :key="chore.id"
   >
-    <chore-card :chore="chore" />
+    <chore-card
+      :Chore="chore"
+      :showMarker="showMarker"
+      @mark-completed="(...args) => $emit('markCompleted', ...args)"
+    />
   </div>
 </template>

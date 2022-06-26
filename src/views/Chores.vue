@@ -7,7 +7,7 @@ const { chores } = storeToRefs(useChoresStore());
 </script>
 
 <template>
-  <chores-list :Chores="chores" />
+  <chores-list :Chores="chores" :showMarker="false" />
 </template>
 
 <style scoped></style>
