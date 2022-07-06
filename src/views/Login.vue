@@ -1,4 +1,5 @@
 <script setup>
+import router from '../router';
 import { storeToRefs } from 'pinia';
 import AuthService from '../services/auth-service.js';
 import { ref } from 'vue';
@@ -15,8 +16,8 @@ const handleLogin = async () => {
     password: password.value,
   });
   if (response.status === 'success')
-    settingsStore.setDetails({ ...response, isAuthenticated: true });
-  
+    settingsStore.login({ ...response, isAuthenticated: true });
+  router.push({ name: 'Home' });
 };
 </script>
 

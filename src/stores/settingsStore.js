@@ -19,8 +19,14 @@ export const useSettingStore = defineStore('settingsStore', {
     },
   },
   actions: {
-    setDetails(data) {
-      this.user = data;
+    login(data) {
+      this.settings = data;
+    },
+    logout() {
+      this.settings.isAuthenticated = false;
+      this.settings.accessToken = '';
+      this.settings.refreshToken = '';
+      this.settings.user = {};
     },
   },
 });
