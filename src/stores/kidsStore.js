@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia';
 
+const apiurl = `${import.meta.env.VITE_APP_API_URL}`;
+
 export const useKidsStore = defineStore('kids', {
   state: () => ({
     counter: 0,
@@ -85,6 +87,14 @@ export const useKidsStore = defineStore('kids', {
       }
       console.log(id, chore);
       this.kids[id].chores.push(chore);
+    },
+    async getKids() {
+      const apiEndpoint = `${apiurl}/api/kid/kidsOfParent`;
+      console.log('getKids', apiEndpoint);
+      const result = await fetch(apiEndpoint);
+      const data = await result.json();
+      console.log('getKids', data);
+      return data;
     },
   },
 });

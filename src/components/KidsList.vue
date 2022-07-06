@@ -3,6 +3,8 @@ import { storeToRefs } from 'pinia';
 import { useKidsStore } from '../stores/kidsStore.js';
 
 const { kids } = storeToRefs(useKidsStore());
+const kidsStore = useKidsStore();
+kidsStore.getKids();
 </script>
 
 <template>

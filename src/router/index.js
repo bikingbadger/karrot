@@ -4,6 +4,7 @@ import Kids from '@/views/Kids.vue';
 import Chores from '@/views/Chores.vue';
 import Settings from '@/views/Settings.vue';
 import KidSettings from '@/views/KidSettings.vue';
+import Login from '@/views/Login.vue';
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -11,6 +12,7 @@ const routes = [
   { path: '/chores', name: 'Chores', component: Chores },
   { path: '/settings', name: 'Settings', component: Settings },
   { path: '/kid-settings/:id', name: 'Kid-Settings', component: KidSettings },
+  { path: '/login', name: 'Login', component: Login },
 ];
 
 const router = createRouter({

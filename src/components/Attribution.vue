@@ -34,6 +34,10 @@
   <a href="https://www.flaticon.com/free-icons/hammer" title="hammer icons"
     >Hammer icons created by smalllikeart - Flaticon</a
   >
+  <a href="https://www.flaticon.com/free-icons/seo-and-web" title="seo-and-web icons">Seo-and-web icons created by Pixel perfect - Flaticon</a>
+  <a href="https://www.flaticon.com/free-icons/unlock" title="unlock icons">Unlock icons created by Pixel perfect - Flaticon</a>
+  <a href="https://www.flaticon.com/free-icons/tools-and-utensils" title="Tools and utensils icons">Tools and utensils icons created by Pixel perfect - Flaticon</a>
+  <a href="https://www.flaticon.com/free-icons/home-page" title="home page icons">Home page icons created by Freepik - Flaticon</a>
 </template>
 
 <script>
