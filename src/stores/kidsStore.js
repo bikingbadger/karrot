@@ -1,77 +1,18 @@
-import { defineStore } from 'pinia';
+import { defineStore, storeToRefs } from 'pinia';
+import { useSettingStore } from './settingsStore';
 
 const apiurl = `${import.meta.env.VITE_APP_API_URL}`;
 
 export const useKidsStore = defineStore('kids', {
   state: () => ({
     counter: 0,
-    kids: [
-      {
-        id: 1,
-        name: 'Lily',
-        icon: 'penguin',
-        chores: [
-          { id: 1, description: 'Make Bed', value: 3, icon: 'bed' },
-          {
-            id: 2,
-            description: 'Get Dressed',
-            value: 1,
-            icon: 'get-dressed',
-          },
-          {
-            id: 3,
-            description: 'Brush Teeth',
-            value: 2,
-            icon: 'tooth',
-          },
-        ],
-      },
-      {
-        id: 2,
-        name: 'Dean',
-        icon: 'shark',
-        chores: [
-          { id: 1, description: 'Make Bed', value: 3, icon: 'bed' },
-          {
-            id: 2,
-            description: 'Get Dressed',
-            value: 1,
-            icon: 'get-dressed',
-          },
-          {
-            id: 3,
-            description: 'Brush Teeth',
-            value: 2,
-            icon: 'tooth',
-          },
-        ],
-      },
-      {
-        id: 3,
-        name: 'Chloe',
-        icon: 'butterfly',
-        chores: [
-          { id: 1, description: 'Make Bed', value: 3, icon: 'bed' },
-          {
-            id: 2,
-            description: 'Get Dressed',
-            value: 1,
-            icon: 'get-dressed',
-          },
-          {
-            id: 3,
-            description: 'Brush Teeth',
-            value: 2,
-            icon: 'tooth',
-          },
-        ],
-      },
-    ],
+    kids: [],
   }),
   getters: {
     getKid: (state) => {
       return (kidId) => {
-        const kid = state.kids.find((kid) => kid.id === kidId);
+        console.log(state.kids);
+        const kid = state.kids.find((kid) => kid._id === kidId);
         return kid;
       };
     },
@@ -81,20 +22,36 @@ export const useKidsStore = defineStore('kids', {
       this.kids.push(kid);
     },
     addChore(kidId, chore) {
-      const id = this.kids.findIndex((kid) => kid.id === kidId);
+      const id = this.kids.findIndex((kid) => kid._id === kidId);
       if (!id) {
         console.error(`User ID ${id} not found`);
       }
       console.log(id, chore);
       this.kids[id].chores.push(chore);
     },
-    async getKids() {
+    async loadKids() {
       const apiEndpoint = `${apiurl}/api/kid/kidsOfParent`;
-      console.log('getKids', apiEndpoint);
-      const result = await fetch(apiEndpoint);
+      const settings = useSettingStore();
+      console.log('getKids', apiEndpoint, settings.accessToken);
+      const result = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + settings.accessToken,
+        },
+      });
+
+      // If 403 need to regenerate token or login again
+      if (result.status === 403) {
+        console.log('getKids', 'Regenerate');
+        settings.refreshToken;
+        return;
+      }
+
       const data = await result.json();
       console.log('getKids', data);
-      return data;
+      this.kids = [...data];
     },
   },
 });

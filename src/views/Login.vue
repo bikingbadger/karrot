@@ -47,6 +47,7 @@ const handleLogin = async () => {
           Password
         </label>
         <input
+          @keydown.enter="handleLogin"
           v-model="password"
           class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
           id="password"

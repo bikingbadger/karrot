@@ -43,7 +43,7 @@ const routes = [
     },
   },
   {
-    path: '/kid-settings/:id',
+    path: '/kid-settings/:_id',
     name: 'Kid-Settings',
     component: KidSettings,
     meta: {

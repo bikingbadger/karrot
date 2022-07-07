@@ -12,24 +12,27 @@ class AuthService {
     });
     const data = await result.json();
     
-    return data;
-
-    //   return axios
-    // 	.post(API_URL + 'signin', {
-    // 	  username: user.username,
-    // 	  password: user.password
-    // 	})
-    // 	.then(response => {
-    // 	  if (response.data.accessToken) {
-    // 		localStorage.setItem('user', JSON.stringify(response.data));
-    // 	  }
-    // 	  return response.data;
-    // 	});
+    return data;    
   }
 
-  // logout() {
-  //   localStorage.removeItem('user');
-  // }
+  async refreshToken(refreshToken) {
+    console.log('login', Endpoint.refreshToken(), user);
+    
+    const payload = {
+      refreshToken:refreshToken
+  }
+    
+    const result = await fetch(Endpoint.refreshToken(), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    });
+    const data = await result.json();
+    
+    return data;    
+  }
 
   // register(user) {
   //   return axios.post(API_URL + 'signup', {

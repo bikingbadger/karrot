@@ -4,7 +4,7 @@ import { useKidsStore } from '../stores/kidsStore.js';
 
 const { kids } = storeToRefs(useKidsStore());
 const kidsStore = useKidsStore();
-kidsStore.getKids();
+kidsStore.loadKids();
 </script>
 
 <template>
@@ -12,7 +12,7 @@ kidsStore.getKids();
     <li class="">
       <router-link
         class="flex flex-wrap my-auto justify-center"
-        :to="`/Kid-Settings/${kid.id}`"
+        :to="`/Kid-Settings/${kid._id}`"
         ><img
           class="w-4 h-4 my-auto"
           alt="Icon"
