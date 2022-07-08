@@ -12,7 +12,7 @@ onMounted(() => {
   if (!settings.isAuthenticated) {
     router.push({ name: 'Login' });
   } else {
-    settings.logout();
+    settings.removeSessionData();
     router.push({ name: 'Home' });
   }
 });

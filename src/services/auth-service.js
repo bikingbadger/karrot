@@ -1,37 +1,37 @@
-import Endpoint from '../utils/endpoints.js';
+import { refreshTokenURL, loginURL } from '../utils/endpoints.js';
+import { noAuthHeader } from '../utils/auth-header.js';
 
 class AuthService {
   async login(user) {
-    console.log('login', Endpoint.login(), user);
-    const result = await fetch(Endpoint.login(), {
+    console.log('login', loginURL(), user);
+
+    const payload = user;
+
+    const result = await fetch(loginURL(), {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user),
+      headers: noAuthHeader(),
+      body: JSON.stringify(payload),
     });
     const data = await result.json();
-    
-    return data;    
+
+    return data;
   }
 
   async refreshToken(refreshToken) {
-    console.log('login', Endpoint.refreshToken(), user);
-    
+    console.log('login', refreshTokenURL(), refreshToken);
+
     const payload = {
-      refreshToken:refreshToken
-  }
-    
-    const result = await fetch(Endpoint.refreshToken(), {
+      refreshToken: refreshToken,
+    };
+
+    const result = await fetch(refreshTokenURL(), {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user),
+      headers: noAuthHeader(),
+      body: JSON.stringify(payload),
     });
     const data = await result.json();
-    
-    return data;    
+
+    return data;
   }
 
   // register(user) {

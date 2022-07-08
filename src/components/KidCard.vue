@@ -10,7 +10,7 @@ defineProps({ kidDetails: Object });
     <img
       class="mx-auto w-8 h-8 my-auto"
       alt="Icon"
-      :src="`../assets/${kidDetails.icon}.png`"
+      :src="`../assets/avatar/${kidDetails.icon}.png`"
     />
 
     <h3 class="text-lg font-bold my-auto">Chores</h3>

@@ -13,7 +13,7 @@ const userId = route.params._id;
 const kidsStore = useKidsStore();
 const kid = kidsStore.getKid(userId);
 console.log('KidSettings', userId, kid);
-const currentChores = kid.chores || [];
+const currentChores = kid.chores;
 
 // Modal
 let showModal = ref(false);
@@ -48,9 +48,10 @@ const markCompleted = (id) => {
     :CurrentChores="currentChores"
     @mark-completed="markCompleted"
   />
-  <button class="btn btn-blue" @click="openModal()">Add</button>
-  <button class="btn btn-blue" @click="cancel()">Cancel</button>
+  <button class="btn btn-blue mx-1" @click="openModal()">Add</button>
+  <button class="btn btn-blue mx-1" @click="cancel()">Cancel</button>
 
+  <h3 class="font-bold my-auto">Chores</h3>
   <ul
     class="flex flex-wrap my-auto justify-center"
     v-for="chore in kid.chores"

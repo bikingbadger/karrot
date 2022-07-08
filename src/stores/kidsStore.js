@@ -1,7 +1,7 @@
 import { defineStore, storeToRefs } from 'pinia';
-import { useSettingStore } from './settingsStore';
-
-const apiurl = `${import.meta.env.VITE_APP_API_URL}`;
+import { createKidsURL, kidsOfParentURL } from '../utils/endpoints.js';
+import { authHeader } from '../utils/auth-header.js';
+import { useSettingStore } from '../stores/settingsStore';
 
 export const useKidsStore = defineStore('kids', {
   state: () => ({
@@ -18,9 +18,6 @@ export const useKidsStore = defineStore('kids', {
     },
   },
   actions: {
-    addUser(kid) {
-      this.kids.push(kid);
-    },
     addChore(kidId, chore) {
       const id = this.kids.findIndex((kid) => kid._id === kidId);
       if (!id) {
@@ -29,23 +26,40 @@ export const useKidsStore = defineStore('kids', {
       console.log(id, chore);
       this.kids[id].chores.push(chore);
     },
+    async createKid(kid) {
+      const parentSettings = useSettingStore();
+      const payload = { ...kid, parentId: parentSettings.settings.user._id };
+
+      const result = await fetch(createKidsURL(), {
+        method: 'POST',
+        headers: authHeader(),
+        body: JSON.stringify(payload),
+      });
+      console.log(result.status,result);
+
+      // If 403 need to regenerate token or login again
+      if (result.status === 403) {
+        const settings = useSettingStore();
+        console.log('getKids', 'refresh token');
+        settings.refreshToken();
+        return;
+      }
+
+      const data = await result.json();
+      this.kids.push(data);
+    },
     async loadKids() {
-      const apiEndpoint = `${apiurl}/api/kid/kidsOfParent`;
-      const settings = useSettingStore();
-      console.log('getKids', apiEndpoint, settings.accessToken);
-      const result = await fetch(apiEndpoint, {
+      console.log('getKids', kidsOfParentURL());
+      const result = await fetch(kidsOfParentURL(), {
         method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + settings.accessToken,
-        },
+        headers: authHeader(),
       });
 
       // If 403 need to regenerate token or login again
       if (result.status === 403) {
-        console.log('getKids', 'Regenerate');
-        settings.refreshToken;
+        const settings = useSettingStore();
+        console.log('getKids', 'refresh token');
+        settings.refreshToken();
         return;
       }
 

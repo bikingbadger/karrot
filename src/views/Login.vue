@@ -16,7 +16,7 @@ const handleLogin = async () => {
     password: password.value,
   });
   if (response.status === 'success')
-    settingsStore.login({ ...response, isAuthenticated: true });
+    settingsStore.saveSessionData({ ...response, isAuthenticated: true });
   router.push({ name: 'Home' });
 };
 </script>
