@@ -1,14 +1,23 @@
 <script setup>
 import { ref } from 'vue';
+
+import IconList from './IconList.vue';
+
 const emit = defineEmits(['closeModal', 'addKid']);
 
-const name = ref('');
-const icon = ref('');
+let name = ref('');
+let icon = ref('');
 
 const addKid = () => {
   console.log('addKid', name.value, icon.value);
   emit('addKid', { name: name.value, icon: icon.value });
 };
+
+const iconSelected = (iconName)=>{
+  console.log('kidAddModal',iconName);
+  icon.value = iconName
+  console.log(icon);
+}
 </script>
 
 <template>
@@ -31,7 +40,7 @@ const addKid = () => {
       </div>
 
       <div class="mb-4">
-        <label class="block text-grey-darker text-sm font-bold mb-2" for="icon">
+        <!-- <label class="block text-grey-darker text-sm font-bold mb-2" for="icon">
           icon
         </label>
         <input
@@ -40,7 +49,8 @@ const addKid = () => {
           id="icon"
           type="text"
           placeholder="icon"
-        />
+        /> -->
+        <icon-list @icon-selected="iconSelected"/>
       </div>
 
       <button class="btn btn-blue mx-1" @click="addKid">Add</button>
