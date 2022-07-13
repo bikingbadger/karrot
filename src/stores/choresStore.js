@@ -9,7 +9,7 @@ export const useChoresStore = defineStore('chores', {
   getters: {
     getChore: (state) => {
       return (choreId) => {
-        return state.chores.find((chore) => chore.id === choreId);
+        return state.chores.find((chore) => chore._id === choreId);
       };
     },
   },

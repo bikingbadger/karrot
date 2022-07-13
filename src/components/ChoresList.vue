@@ -1,6 +1,7 @@
 <script setup>
 import ChoreCard from './ChoreCard.vue';
 const props = defineProps({ Chores: Object, showMarker: Boolean });
+const emit = defineEmits(['markCompleted']);
 </script>
 
 <template>

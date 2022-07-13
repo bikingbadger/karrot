@@ -9,10 +9,10 @@ import ChoreAddModal from '@/components/ChoreAddModal.vue';
 
 const route = useRoute();
 console.log('KidSettings', route.params);
-const userId = route.params._id;
+const kidId = route.params._id;
 const kidsStore = useKidsStore();
-const kid = kidsStore.getKid(userId);
-console.log('KidSettings', userId, kid);
+const kid = kidsStore.getKid(kidId);
+console.log('KidSettings', kidId, kid);
 const currentChores = kid.chores;
 
 // Modal
@@ -33,9 +33,9 @@ const cancel = () => {
 // Handle adding chores
 const chores = useChoresStore();
 const markCompleted = (id) => {
-  console.log(`mark ${id} as completed for ${kid.id}`);
+  console.log(`mark ${id} as completed for ${kid._id}`);
   const chore = chores.getChore(id);
-  kidsStore.addChore(kid.id, chore);
+  kidsStore.addChore(kid._id, chore);
 };
 </script>
 
@@ -48,7 +48,7 @@ const markCompleted = (id) => {
     :CurrentChores="currentChores"
     @mark-completed="markCompleted"
   />
-  <button class="btn btn-blue mx-1" @click="openModal()">Add</button>
+  <button class="btn btn-blue mx-1" @click="openModal()">Add Chore</button>
   <button class="btn btn-blue mx-1" @click="cancel()">Cancel</button>
 
   <h3 class="font-bold my-auto">Chores</h3>
@@ -62,7 +62,7 @@ const markCompleted = (id) => {
       alt="Icon"
       :src="`../assets/${chore.icon}.png`"
     />
-    <span>{{ chore.description }}</span>
+    <span>{{ chore.name }}</span>
   </ul>
 </template>
 

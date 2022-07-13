@@ -20,10 +20,9 @@ export const useKidsStore = defineStore('kids', {
   actions: {
     addChore(kidId, chore) {
       const id = this.kids.findIndex((kid) => kid._id === kidId);
-      if (!id) {
+      if (id === -1) {
         console.error(`User ID ${id} not found`);
       }
-      console.log(id, chore);
       this.kids[id].chores.push(chore);
     },
     async createKid(kid) {
@@ -35,7 +34,7 @@ export const useKidsStore = defineStore('kids', {
         headers: authHeader(),
         body: JSON.stringify(payload),
       });
-      console.log(result.status,result);
+      console.log(result.status, result);
 
       // If 403 need to regenerate token or login again
       if (result.status === 403) {

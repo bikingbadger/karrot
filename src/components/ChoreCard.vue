@@ -6,7 +6,7 @@ const emit = defineEmits(['markCompleted']);
 let completed = ref(false);
 const completeChore = () => {
   completed.value = true;
-  emit('markCompleted', props.Chore.id);
+  emit('markCompleted', props.Chore._id);
 };
 </script>
 
