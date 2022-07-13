@@ -1,17 +1,15 @@
-import { defineStore, storeToRefs } from 'pinia';
+import { defineStore } from 'pinia';
 import { createKidsURL, kidsOfParentURL } from '../utils/endpoints.js';
-import { authHeader } from '../utils/auth-header.js';
+import { callAPI } from '../utils/api-call';
 import { useSettingStore } from '../stores/settingsStore';
 
 export const useKidsStore = defineStore('kids', {
   state: () => ({
-    counter: 0,
     kids: [],
   }),
   getters: {
     getKid: (state) => {
       return (kidId) => {
-        console.log(state.kids);
         const kid = state.kids.find((kid) => kid._id === kidId);
         return kid;
       };
@@ -28,41 +26,11 @@ export const useKidsStore = defineStore('kids', {
     async createKid(kid) {
       const parentSettings = useSettingStore();
       const payload = { ...kid, parentId: parentSettings.settings.user._id };
-
-      const result = await fetch(createKidsURL(), {
-        method: 'POST',
-        headers: authHeader(),
-        body: JSON.stringify(payload),
-      });
-      console.log(result.status, result);
-
-      // If 403 need to regenerate token or login again
-      if (result.status === 403) {
-        const settings = useSettingStore();
-        console.log('getKids', 'refresh token');
-        settings.refreshToken();
-        return;
-      }
-
-      const data = await result.json();
+      const data = await callAPI(createKidsURL(), 'POST', true, payload);
       this.kids.push(data);
     },
     async loadKids() {
-      console.log('getKids', kidsOfParentURL());
-      const result = await fetch(kidsOfParentURL(), {
-        method: 'GET',
-        headers: authHeader(),
-      });
-
-      // If 403 need to regenerate token or login again
-      if (result.status === 403) {
-        const settings = useSettingStore();
-        console.log('getKids', 'refresh token');
-        settings.refreshToken();
-        return;
-      }
-
-      const data = await result.json();
+      const data = await callAPI(kidsOfParentURL(), 'GET', true, {});
       console.log('getKids', data);
       this.kids = [...data];
     },

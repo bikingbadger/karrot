@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { allChoresURL } from '../utils/endpoints';
-import { authHeader } from '../utils/auth-header.js';
+import { callAPI } from '../utils/api-call';
 
 export const useChoresStore = defineStore('chores', {
   state: () => ({
@@ -15,21 +15,7 @@ export const useChoresStore = defineStore('chores', {
   },
   actions: {
     async getChores() {
-      console.log('getChores', allChoresURL());
-      const result = await fetch(allChoresURL(), {
-        method: 'GET',
-        headers: authHeader(),
-      });
-
-      // If 403 need to regenerate token or login again
-      if (result.status === 403) {
-        const settings = useSettingStore();
-        console.log('getChores', 'refresh token');
-        settings.refreshToken();
-        return;
-      }
-
-      const data = await result.json();
+      const data = await callAPI(allChoresURL(), 'GET', true, {});
       console.log('getChores', data);
       this.chores = [...data];
     },
