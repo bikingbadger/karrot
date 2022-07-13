@@ -1,102 +1,10 @@
 import { defineStore } from 'pinia';
+import { allChoresURL } from '../utils/endpoints';
+import { authHeader } from '../utils/auth-header.js';
 
 export const useChoresStore = defineStore('chores', {
   state: () => ({
-    chores: [
-      { id: 1, description: 'Make Bed', value: 3, icon: 'bed' },
-      {
-        id: 2,
-        description: 'Get Dressed',
-        value: 1,
-        icon: 'get-dressed',
-      },
-      {
-        id: 3,
-        description: 'Brush Teeth',
-        value: 2,
-        icon: 'tooth',
-      },
-      {
-        id: 4,
-        description: 'Brush Hair',
-        value: 1,
-        icon: 'hair-brush',
-      },
-      {
-        id: 5,
-        description: 'Medicine',
-        value: 3,
-        icon: 'medicine',
-      },
-      {
-        id: 6,
-        description: 'Breakfast',
-        value: 2,
-        icon: 'pancakes',
-      },
-      {
-        id: 7,
-        description: 'Pack Bag',
-        value: 2,
-        icon: 'school-bag',
-      },
-      {
-        id: 8,
-        description: 'Pack Lunch',
-        value: 2,
-        icon: 'lunchbox',
-      },
-      {
-        id: 9,
-        description: 'Lights',
-        value: 2,
-        icon: 'light-bulb',
-      },
-      {
-        id: 10,
-        description: 'Shoes',
-        value: 1,
-        icon: 'sneakers',
-      },
-      {
-        id: 11,
-        description: 'Water Bottle',
-        value: 3,
-        icon: 'water',
-      },
-      { id: 12, description: 'Mask', value: 1, icon: 'mask' },
-      {
-        id: 13,
-        description: 'Homework',
-        value: 3,
-        icon: 'homework',
-      },
-      {
-        id: 13,
-        description: 'Clothes',
-        value: 3,
-        icon: 'laundry',
-      },
-      {
-        id: 13,
-        description: 'Dishes',
-        value: 5,
-        icon: 'clean-dishes',
-      },
-      {
-        id: 13,
-        description: 'Clear Table',
-        value: 3,
-        icon: 'dining-table',
-      },
-
-      {
-        id: 14,
-        description: 'Wipe Table',
-        value: 3,
-        icon: 'dishcloth',
-      },
-    ],
+    chores: [],
   }),
   getters: {
     getChore: (state) => {
@@ -105,5 +13,25 @@ export const useChoresStore = defineStore('chores', {
       };
     },
   },
-  actions: {},
+  actions: {
+    async getChores() {
+      console.log('getChores', allChoresURL());
+      const result = await fetch(allChoresURL(), {
+        method: 'GET',
+        headers: authHeader(),
+      });
+
+      // If 403 need to regenerate token or login again
+      if (result.status === 403) {
+        const settings = useSettingStore();
+        console.log('getChores', 'refresh token');
+        settings.refreshToken();
+        return;
+      }
+
+      const data = await result.json();
+      console.log('getChores', data);
+      this.chores = [...data];
+    },
+  },
 });

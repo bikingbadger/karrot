@@ -13,7 +13,7 @@ const completeChore = () => {
 <template>
   <img class="ml-auto w-8 h-8" alt="Icon" :src="`/assets/${Chore.icon}.png`" />
   <div class="mr-auto my-auto">
-    {{ Chore.description }}
+    {{ Chore.name }}
   </div>
   <div class="flex flex-wrap my-auto">
     <img

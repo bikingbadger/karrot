@@ -19,4 +19,13 @@ const kidsOfParentURL = () => {
   return `${apiurl}/api/kid/kidsOfParent`;
 };
 
-export { loginURL, refreshTokenURL, createKidsURL, kidsOfParentURL };
+
+/**
+ * Chore Related Endpoints
+ */
+
+ const allChoresURL = () => {
+  return `${apiurl}/api/chore/allChores`;
+};
+
+export { loginURL, refreshTokenURL, createKidsURL, kidsOfParentURL, allChoresURL };
