@@ -1,15 +1,26 @@
 <script setup>
+import { reactive } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useChoresStore } from '../stores/choresStore';
 import ChoresList from '../components/ChoresList.vue';
 
-defineEmits(['closeModal', 'markCompleted']);
+const emit = defineEmits(['markCompleted', 'closeModal']);
 const props = defineProps({ CurrentChores: Object });
 
 const { chores } = storeToRefs(useChoresStore());
-const remainingChores = chores.value.filter((chore) => {
-  return props.CurrentChores.findIndex((cur) => cur.id === chore.id) === -1;
-});
+const remainingChores = reactive(
+  chores.value.filter((chore) => {
+    return props.CurrentChores.findIndex((cur) => cur._id === chore._id) === -1;
+  }),
+);
+
+const markCompleted = (id) => {
+  console.log('remainingChores', id, remainingChores);
+  const index = remainingChores.findIndex((chore) => chore._id === id);
+  console.log(index);
+  remainingChores.splice(index, 1);
+  emit('markCompleted', id);
+};
 </script>
 
 <template>
@@ -21,8 +32,9 @@ const remainingChores = chores.value.filter((chore) => {
       <chores-list
         :Chores="remainingChores"
         :showMarker="true"
-        @mark-completed="(...args) => $emit('markCompleted', ...args)"
+        @mark-completed="markCompleted"
       />
+      <!-- @mark-completed="(...args) => $emit('markCompleted', ...args)" -->
       <button class="btn btn-blue" @click="$emit('closeModal')">Close</button>
     </div>
   </div>

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { createKidsURL, kidsOfParentURL } from '../utils/endpoints.js';
+import { createKidsURL, kidsOfParentURL, addChoreURL } from '../utils/endpoints.js';
 import { callAPI } from '../utils/api-call';
 import { useSettingStore } from '../stores/settingsStore';
 
@@ -16,7 +16,10 @@ export const useKidsStore = defineStore('kids', {
     },
   },
   actions: {
-    addChore(kidId, chore) {
+    async addChore(kidId, chore) {
+      console.log(kidId, chore);
+      const payload = { kidId, chore };
+      const data = await callAPI(addChoreURL(), 'POST', true, payload);
       const id = this.kids.findIndex((kid) => kid._id === kidId);
       if (id === -1) {
         console.error(`User ID ${id} not found`);

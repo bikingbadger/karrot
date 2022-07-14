@@ -8,7 +8,7 @@ const emit = defineEmits(['markCompleted']);
   <div
     class="grid grid-flow-col grid-cols-3 gap-4 m-4"
     v-for="chore in Chores"
-    :key="chore.id"
+    :key="chore._id"
   >
     <chore-card
       :Chore="chore"
